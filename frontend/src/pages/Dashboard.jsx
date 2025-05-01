@@ -1,29 +1,21 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import CameraCard from "../components/CameraCard";
+import { Link } from "react-router-dom";
 
 function Dashboard() {
-  const [cameras, setCameras] = useState([]);
-
-  // טעינת המצלמות מה-Backend
-  useEffect(() => {
-    axios.get("/api/cameras") // כתובת ה-API שלך
-      .then(res => setCameras(res.data))
-      .catch(err => console.error("Failed to load cameras:", err));
-  }, []);
-
-  // תפעול לחיצה על Take Over
-  const handleTakeOver = (id) => {
-    axios.patch(`/api/cameras/${id}`, { status: "in-use" })
-      .then(() => alert(`Camera ${id} taken over!`))
-      .catch(() => alert(`Failed to take over camera ${id}`));
-  };
-  
   return (
-    <div className="grid gap-6 p-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-      {cameras.map(cam => (
-        <CameraCard key={cam.id} camera={cam} onTakeOver={handleTakeOver} />
-      ))}
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
+      <h1 className="text-3xl font-bold mb-6">מערכת ניהול מצלמות</h1>
+
+      <div className="flex flex-col gap-4 w-full max-w-xs">
+        <Link
+          to="/stream"
+          className="bg-blue-600 text-white px-6 py-3 rounded text-center hover:bg-blue-700"
+        >
+          צפייה במצלמות (Stream)
+        </Link>
+
+        {/* ניתן להוסיף עוד ניווטים בעתיד /}
+        {/ <Link to="/settings" className="bg-gray-600 ...">הגדרות</Link> */}
+      </div>
     </div>
   );
 }
