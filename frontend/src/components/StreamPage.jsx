@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 // כתובת ה-API של השותף (עדכן בהתאם)
-const API_URL = "https://camera-frontend.onrender.com";
+const API_URL = "https://camera-backend-ovtr.onrender.com";
 
 function StreamPage() {
   const [cameras, setCameras] = useState([]);
