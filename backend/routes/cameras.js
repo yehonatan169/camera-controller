@@ -15,8 +15,8 @@ router.get("/cameras", (req, res) => {
 
     try {
       const parsed = JSON.parse(data); // ✅ Parse the full db.json
-      const cameras = parsed.cameras || []; // ✅ Pull only the "cameras" array
-      res.json(cameras.cameras); // ✅ only send the array part
+      res.json(parsed.cameras); // ✅ only send the array part
+      console.log("✅ Cameras loaded successfully:", parsed.cameras); // ✅ Log success
     } catch (parseErr) {
       console.error("❌ Invalid JSON format:", parseErr);
       res.status(500).json({ error: "Invalid data format" }); // ⛔ Handle broken JSON

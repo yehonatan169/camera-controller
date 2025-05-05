@@ -10,7 +10,7 @@ function Dashboard() {
     // 🔄 Fetch cameras from backend when the component loads
     fetch(`${import.meta.env.VITE_API_URL}/api/cameras`)
       .then((res) => res.json())
-      .then((data) => setCameras(data.cameras)) 
+      .then((data) => setCameras(data)) 
       .catch((err) => console.error("❌ Failed to load cameras:", err));
   }, []);
 

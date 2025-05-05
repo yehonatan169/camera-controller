@@ -1,20 +1,52 @@
-{
-    "cameras": [
-      {
-        "id": "cam-1",
-        "name": "Entrance",
-        "status": "active"
-      },
-      {
-        "id": "cam-2",
-        "name": "Backyard",
-        "status": "idle"
-      },
-      {
-        "id": "cam-3",
-        "name": "Main Hall",
-        "status": "offline"
-      }
-    ]
-  }
-  
+  {
+      "cameras": [
+        {
+          "id": "cam-1",
+          "name": "Entrance",
+          "status": "active"
+        },
+        {
+          "id": "cam-2",
+          "name": "Backyard",
+          "status": "idle"
+        },
+        {
+          "id": "cam-3",
+          "name": "Main Hall",
+          "status": "offline"
+        },
+        {
+          "id": "cam-4",
+          "name": "Garage",
+          "status": "active"
+        },
+        {
+          "id": "cam-5",
+          "name": "Pool Area",
+          "status": "active"
+        },
+        {
+          "id": "cam-6",
+          "name": "Living Room",
+          "status": "idle"
+        },
+        {
+          "id": "cam-7",
+          "name": "Kitchen",
+          "status": "offline"
+        },
+        {
+          "id": "cam-8",
+          "name": "Bedroom",
+          "status": "active"
+        },
+        {
+          "id": "cam-9",
+          "name": "Bathroom",
+          "status": "active"
+        }
+        
+      ]
+    
+    }
+    
