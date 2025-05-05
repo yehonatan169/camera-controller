@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import '../styles.css'; // ✅ Import the custom CSS
 
 const API_URL = "https://camera-backend-ovtr.onrender.com";
 
@@ -22,7 +23,7 @@ function StreamPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-black text-white">
+      <div className="container-center">
         <p>{error}</p>
       </div>
     );
@@ -30,29 +31,28 @@ function StreamPage() {
 
   if (!camera) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-black text-white">
+      <div className="container-center">
         <p>Loading camera details...</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-black text-white p-6">
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-2xl font-bold mb-4">Camera Stream: {camera.name}</h1>
-
-        <p className="mb-2 text-gray-400">Status: {camera.status}</p>
-        <p className="mb-4 text-gray-400">Stream URL: {camera.streamUrl || "N/A"}</p>
+    <div className="container-center" style={{ flexDirection: "column", padding: "1.5rem" }}>
+      <div className="card" style={{ width: "100%", maxWidth: "768px" }}>
+        <h1>Camera Stream: {camera.name}</h1>
+        <p className="text-muted">Status: {camera.status}</p>
+        <p className="text-muted">Stream URL: {camera.streamUrl || "N/A"}</p>
 
         {camera.streamUrl ? (
           <video
             src={camera.streamUrl}
             controls
             autoPlay
-            className="w-full max-w-2xl rounded border"
+            className="video-player"
           />
         ) : (
-          <div className="text-red-500">No stream URL available for this camera.</div>
+          <div style={{ color: "red" }}>No stream URL available for this camera.</div>
         )}
       </div>
     </div>

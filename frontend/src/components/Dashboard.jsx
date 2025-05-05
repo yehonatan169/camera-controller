@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import '../styles.css'; // ✅ Import your global styles
 
 function Dashboard() {
   const [cameras, setCameras] = useState([]);
@@ -13,27 +14,21 @@ function Dashboard() {
   }, []);
 
   const handleView = (cameraId) => {
-    navigate(`/stream/${cameraId}`); // ⬅️ שולח את מזהה המצלמה
+    navigate(`/stream/${cameraId}`);
   };
 
   return (
-    <div className="min-h-screen bg-black text-white p-6">
-      <div className="text-center text-2xl font-bold mb-6">📷 Camera List</div>
+    <div className="container-center" style={{ flexDirection: "column", padding: "1.5rem" }}>
+      <div className="dashboard-title">📷 Camera List</div>
 
-      <div className="grid gap-4 max-w-md mx-auto">
+      <div className="camera-list">
         {cameras.map((camera) => (
-          <div
-            key={camera._id}
-            className="bg-[#1F2937] p-4 rounded-xl shadow-md flex justify-between items-center"
-          >
+          <div key={camera._id} className="camera-item">
             <div>
-              <div className="font-semibold">{camera.name}</div>
-              <div className="text-sm text-gray-400">Status: {camera.status}</div>
+              <div>{camera.name}</div>
+              <div className="camera-status">Status: {camera.status}</div>
             </div>
-            <button
-              onClick={() => handleView(camera._id)}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
-            >
+            <button onClick={() => handleView(camera._id)} className="button" style={{ width: "auto" }}>
               View
             </button>
           </div>

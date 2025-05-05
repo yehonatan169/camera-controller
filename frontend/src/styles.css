@@ -1,0 +1,121 @@
+/* Base reset and background */
+body {
+    margin: 0;
+    background-color: #0d1117; /* Deep cyber night */
+    color: #c9d1d9; /* Soft white-blue */
+    font-family: 'Inter', sans-serif;
+  }
+  
+  /* Centered layout */
+  .container-center {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Card UI */
+.card {
+    background-color: #161b22; /* Slightly lighter than body */
+    padding: 2rem;
+    border-radius: 0.5rem; /* Squared, but not harsh */
+    width: 90%;
+    max-width: 700px;
+    height: 250px; /* Increased height */
+
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.1); /* Cyber glow effect */
+}
+  
+  /* Titles */
+  .card h1,
+  .card h2 {
+    margin: 0 0 1.5rem;
+    text-align: left;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #58a6ff;
+  }
+  
+  /* Form layout */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Input fields */
+  .input,
+  textarea {
+    background-color: #21262d;
+    color: #c9d1d9;
+    border: 1px solid #30363d;
+    border-radius: 0.25rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    outline: none;
+    transition: border 0.2s ease;
+  }
+  
+  .input:focus {
+    border-color: #58a6ff;
+  }
+  
+  /* Button */
+  .button {
+    background-color: #238636;
+    color: #ffffff;
+    padding: 0.75rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #2ea043;
+  }
+  
+  /* Muted text */
+  .text-muted {
+    color: #8b949e;
+  }
+  
+  /* Video */
+  .video-player {
+    width: 100%;
+    max-width: 768px;
+    border-radius: 0.25rem;
+    border: 1px solid #30363d;
+    background: #0d1117;
+  }
+  
+  /* Camera dashboard */
+  .dashboard-title {
+    text-align: center;
+    font-size: 1.75rem;
+    color: #58a6ff;
+    margin-bottom: 1rem;
+  }
+  
+  .camera-list {
+    display: grid;
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .camera-item {
+    background-color: #21262d;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #30363d;
+  }
+  
+  .camera-status {
+    font-size: 0.9rem;
+    color: #8b949e;
+  }
+  

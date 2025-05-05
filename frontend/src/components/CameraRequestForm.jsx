@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import '../styles.css'; // ✅ Import your custom stylesheet
 
 export default function CameraRequestForm() {
   const [form, setForm] = useState({
@@ -18,22 +19,22 @@ export default function CameraRequestForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (form.region && form.settlements && form.officer && form.details) {
-      navigate("/dashboard"); // ✅ מעבר למסך המצלמות
+      navigate("/dashboard");
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black text-white font-inter">
-      <div className="bg-[#111827] p-8 rounded-2xl shadow-lg w-[90%] max-w-md">
-        <h2 className="text-xl font-semibold mb-6 text-center">Camera Access Request</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="container-center">
+      <div className="card">
+        <h2>Camera Access Request</h2>
+        <form onSubmit={handleSubmit} className="form-group">
           <input
             type="text"
             name="region"
             placeholder="Region"
             value={form.region}
             onChange={handleChange}
-            className="w-full px-4 py-2 rounded-lg bg-[#1F2937] text-white border border-gray-700"
+            className="input"
             required
           />
           <input
@@ -42,7 +43,7 @@ export default function CameraRequestForm() {
             placeholder="Settlements"
             value={form.settlements}
             onChange={handleChange}
-            className="w-full px-4 py-2 rounded-lg bg-[#1F2937] text-white border border-gray-700"
+            className="input"
             required
           />
           <input
@@ -51,7 +52,7 @@ export default function CameraRequestForm() {
             placeholder="Security Officer + Phone"
             value={form.officer}
             onChange={handleChange}
-            className="w-full px-4 py-2 rounded-lg bg-[#1F2937] text-white border border-gray-700"
+            className="input"
             required
           />
           <textarea
@@ -60,15 +61,10 @@ export default function CameraRequestForm() {
             value={form.details}
             onChange={handleChange}
             rows={3}
-            className="w-full px-4 py-2 rounded-lg bg-[#1F2937] text-white border border-gray-700"
+            className="input"
             required
           />
-          <button
-            type="submit"
-            className="w-full bg-[#2563EB] hover:bg-blue-700 text-white py-2 rounded-lg font-semibold"
-          >
-            Submit Request
-          </button>
+          <button type="submit" className="button">Submit Request</button>
         </form>
       </div>
     </div>
