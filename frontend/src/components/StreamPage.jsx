@@ -1,93 +1,59 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
-// כתובת ה-API של השותף (עדכן בהתאם)
 const API_URL = "https://camera-backend-ovtr.onrender.com";
 
 function StreamPage() {
-  const [cameras, setCameras] = useState([]);
-  const [selectedCameraId, setSelectedCameraId] = useState(null);
-  const [streamUrl, setStreamUrl] = useState("");
+  const { id } = useParams();
+  const [camera, setCamera] = useState(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    axios.get(`${API_URL}/api/cameras`)
-      .then((res) => {
-        if (Array.isArray(res.data)) {
-          setCameras(res.data);
-        } else {
-          console.warn("Expected array, got:", res.data);
-          setCameras([]);
-        }
-      })
+    if (!id) return;
+
+    axios.get(`${API_URL}/api/cameras/${id}`)
+      .then((res) => setCamera(res.data))
       .catch((err) => {
-        console.error("Failed to load cameras:", err);
-        alert("Failed to load cameras");
+        console.error("❌ Failed to load camera:", err);
+        setError("Camera not found or error fetching data.");
       });
-  }, []);
+  }, [id]);
 
-  const handleTakeOver = () => {
-    if (!selectedCameraId || selectedCameraId === "--") return;
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-black text-white">
+        <p>{error}</p>
+      </div>
+    );
+  }
 
-    if (selectedCameraId === "ALL") {
-      setStreamUrl("");
-    } else {
-      setStreamUrl(`${API_URL}/api/stream/${selectedCameraId}`);
-    }
-  };
+  if (!camera) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-black text-white">
+        <p>Loading camera details...</p>
+      </div>
+    );
+  }
 
   return (
-    <div className="p-6 max-w-3xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Select Camera to Stream</h1>
+    <div className="min-h-screen bg-black text-white p-6">
+      <div className="max-w-3xl mx-auto">
+        <h1 className="text-2xl font-bold mb-4">Camera Stream: {camera.name}</h1>
 
-      <div className="mb-4">
-        <select
-          className="w-full border p-2 rounded max-h-48 overflow-y-scroll"
-          size={5}
-          onChange={(e) => setSelectedCameraId(e.target.value)}
-        >
-          <option value="--">-- Choose a camera --</option>
-          <option value="ALL">🎥 Load All Cameras</option>
-          {cameras.map((cam) => (
-            <option key={cam.id} value={cam.id}>
-              {cam.id}
-            </option>
-          ))}
-        </select>
-      </div>
+        <p className="mb-2 text-gray-400">Status: {camera.status}</p>
+        <p className="mb-4 text-gray-400">Stream URL: {camera.streamUrl || "N/A"}</p>
 
-      <div className="flex gap-4">
-        <button
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-          onClick={handleTakeOver}
-        >
-          Take Over & View Stream
-        </button>
-      </div>
-
-      <div className="mt-6">
-        {selectedCameraId === "ALL" ? (
-          cameras.map((cam) => (
-            <div key={cam.id} className="mt-6">
-              <h3 className="font-semibold mb-2">{cam.name}</h3>
-              <video
-                src={`${API_URL}/api/stream/${cam.id}`}
-                controls
-                autoPlay
-                className="w-full max-w-lg rounded border"
-              />
-            </div>
-          ))
-        ) : streamUrl ? (
-          <div className="mt-4">
-            <h3 className="font-semibold mb-2">Live Stream</h3>
-            <video
-              src={streamUrl}
-              controls
-              autoPlay
-              className="w-full max-w-2xl rounded border"
-            />
-          </div>
-        ) : null}
+        {camera.streamUrl ? (
+          <video
+            src={camera.streamUrl}
+            controls
+            autoPlay
+            className="w-full max-w-2xl rounded border"
+          />
+        ) : (
+          <div className="text-red-500">No stream URL available for this camera.</div>
+        )}
       </div>
     </div>
   );
