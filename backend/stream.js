@@ -1,21 +1,30 @@
+// backend/signaling.js
+const express = require('express');
+const http = require('http');
+const { Server } = require('socket.io');
 
-const { proxy } = require('rtsp-relay');
-
-
-
-const handler = (url) => {
-    return proxy({
-        additionalFlags: ['-q', '1'],  // Reduce quality for lower bandwidth
-        url: url,
-        transport: 'tcp',             // Use TCP for stream transport
-        verbose: true,                // Print FFmpeg logs
-    });
-};
-
-const streamHandler = ('/', (ws, req) => {
-    //const url = req.query.url;      // Get RTSP URL from query parameter
-    const url = `rtsp://localhost:8554/mystream`
-    handler(url)(ws, req);          // Proxy RTSP stream via WebSocket
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: { origin: "*" }
 });
 
-module.exports = { streamHandler } ;
+io.on('connection', (socket) => {
+  console.log("🔌 New socket:", socket.id);
+
+  socket.on('signal', (data) => {
+    // Forward signaling data to the other peer
+    io.to(data.target).emit('signal', {
+      signal: data.signal,
+      from: socket.id
+    });
+  });
+
+  socket.on('join', () => {
+    socket.broadcast.emit('peer-joined', { id: socket.id });
+  });
+});
+
+server.listen(4000, () => {
+  console.log("✅ Signaling server running on port 4000");
+});

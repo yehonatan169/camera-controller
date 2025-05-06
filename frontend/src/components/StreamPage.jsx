@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import '../styles.css'; // ✅ Import the custom CSS
 
-const API_URL = "https://camera-backend-ovtr.onrender.com";
+
 
 function StreamPage() {
   const { id } = useParams();
@@ -12,9 +12,17 @@ function StreamPage() {
 
   useEffect(() => {
     if (!id) return;
-
-    axios.get(`${API_URL}/api/cameras/${id}`)
+    axios.get(`${import.meta.API_URL}/api/cameras/${id}`)
       .then((res) => setCamera(res.data))
+    axios.get(`${import.meta.API_URL}/api/cameras`)
+      .then((res) => {
+        if (Array.isArray(res.data)) {
+          setCameras(res.data);
+        } else {
+          console.warn("Expected array, got:", res.data);
+          setCameras([]);
+        }
+      })
       .catch((err) => {
         console.error("❌ Failed to load camera:", err);
         setError("Camera not found or error fetching data.");
