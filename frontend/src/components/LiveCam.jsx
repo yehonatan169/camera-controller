@@ -28,7 +28,7 @@ export default function LiveCam() {
           clearInterval(typeInterval); // ✅ Stop exactly at the end
         }
       }, 70);// character typing speed
-    }, 3000);
+    }, 5000);
 
     return () => clearTimeout(startTyping);
   }, []);
