@@ -28,7 +28,7 @@ function Dashboard() {
               <div>{camera.name}</div>
               <div className="camera-status">Status: {camera.status}</div>
             </div>
-            <button onClick={() => handleView(camera._id)} className="button" style={{ width: "auto" }}>
+            <button onClick={() => navigate(`/stream/${camera.id}`)} className="button" style={{ width: "auto" }}>
               View
             </button>
           </div>

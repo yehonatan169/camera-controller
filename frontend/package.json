@@ -11,7 +11,10 @@
     "api": "json-server --watch db.json --port 3000"
   },
   "dependencies": {
+    "@lottiefiles/react-lottie-player": "^3.6.0",
     "axios": "^1.9.0",
+    "hls.js": "^1.6.2",
+    "lottie-react": "^2.4.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.5.3",

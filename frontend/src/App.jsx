@@ -1,17 +1,39 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./components/Login"; // ✅ הוספנו ייבוא
+import Login from "./components/Login";
 import CameraRequestForm from "./components/CameraRequestForm";
 import Dashboard from "./components/Dashboard";
-import StreamPage from "./components/StreamPage";
+import AuthenticatedLayout from "./components/AuthenticatedLayout";
+import LiveCam from "./components/LiveCam";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} /> {/* 🔐 דף התחברות */}
-        <Route path="/request" element={<CameraRequestForm />} /> {/* 📋 טופס בקשה */}
-        <Route path="/dashboard" element={<Dashboard />} /> {/* 📷 רשימת מצלמות */}
-        <Route path="/stream" element={<StreamPage />} /> {/* 📺 צפייה */}
+        <Route path="/" element={<Login />} />
+        <Route
+          path="/request"
+          element={
+            <AuthenticatedLayout>
+              <CameraRequestForm />
+            </AuthenticatedLayout>
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <AuthenticatedLayout>
+              <Dashboard />
+            </AuthenticatedLayout>
+          }
+        />
+        
+        <Route
+          path="/stream/cam-1"
+          element={
+            <AuthenticatedLayout>
+              <LiveCam />
+            </AuthenticatedLayout>
+          }/>
       </Routes>
     </Router>
   );

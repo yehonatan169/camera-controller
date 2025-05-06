@@ -7,17 +7,6 @@
 </head>
 <body>
   <h1>Live Webcam Feed</h1>
-  <!-- <video id="webcam" autoplay playsinline muted></video>
-
-  <script>
-    navigator.mediaDevices.getUserMedia({ video: true })
-      .then(stream => {
-        document.getElementById('webcam').srcObject = stream;
-
-        // TODO: send to peer or server if needed
-      })
-      .catch(err => console.error("Camera error:", err));
-  </script> -->
   <video id="video" controls autoplay muted></video>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
