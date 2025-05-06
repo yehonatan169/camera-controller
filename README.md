@@ -27,7 +27,7 @@ In emergency or high-risk situations, rapid camera access can:
 ## 🚀 Try it Live
 
 This project is deployed on **Render**.  
-🟢 [Live Demo URL]((https://camera-controller-1.onrender.com))
+🟢 [Live Demo URL](https://camera-controller-1.onrender.com)
 
 
 ---
