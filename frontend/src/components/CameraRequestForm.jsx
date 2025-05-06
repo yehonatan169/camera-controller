@@ -28,42 +28,15 @@ export default function CameraRequestForm() {
       <div className="card">
         <h2>Camera Access Request</h2>
         <form onSubmit={handleSubmit} className="form-group">
-          <input
-            type="text"
-            name="region"
-            placeholder="Region"
-            value={form.region}
-            onChange={handleChange}
-            className="input"
-            required
-          />
-          <input
-            type="text"
-            name="settlements"
-            placeholder="Settlements"
-            value={form.settlements}
-            onChange={handleChange}
-            className="input"
-            required
-          />
-          <input
-            type="text"
-            name="officer"
-            placeholder="Security Officer + Phone"
-            value={form.officer}
-            onChange={handleChange}
-            className="input"
-            required
-          />
-          <textarea
-            name="details"
-            placeholder="Bottom of Access Request"
-            value={form.details}
-            onChange={handleChange}
-            rows={3}
-            className="input"
-            required
-          />
+          <h1>Select a Region</h1>
+          <select name="region" >
+            
+          </select>
+          <h1>Select a City/Settlement</h1>
+          <select name="city" >
+            
+          </select>
+
           <button type="submit" className="button">Submit Request</button>
         </form>
       </div>
