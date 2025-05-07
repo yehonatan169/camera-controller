@@ -4,8 +4,11 @@ import Hls from "hls.js";
 export default function LiveCam() {
   const videoRef = useRef(null);
   const [typedText, setTypedText] = useState("");
-  const fullText = "No object was found... Area is clear...";
-  
+
+  const getTimestamp = () => {
+    return new Date().toLocaleTimeString(); // HH:MM:SS format
+  };
+
   useEffect(() => {
     // Initialize the video stream
     const video = videoRef.current;
@@ -17,20 +20,17 @@ export default function LiveCam() {
       video.src = "https://video.weather2day.co.il:4438/live/hermon/playlist.m3u8";
     }
 
-    // Typing simulation after 3 second delay
-    const startTyping = setTimeout(() => {
-      let index = 0;
-      const typeInterval = setInterval(() => {
-        if (index < fullText.length) {
-          setTypedText((prev) => prev + fullText[index]);
-          index++;
-        } else {
-          clearInterval(typeInterval); // ✅ Stop exactly at the end
-        }
-      }, 70);// character typing speed
-    }, 5000);
+    // Log the first timestamp immediately
+    setTypedText(`[${getTimestamp()}] No object was found... Area is clear...`);
 
-    return () => clearTimeout(startTyping);
+    // Add a new line every 20 seconds
+    const intervalId = setInterval(() => {
+      setTypedText((prev) =>
+        prev + `\n[${getTimestamp()}] No object was found... Area is clear...`
+      );
+    }, 20000); // 20,000ms = 20 seconds
+
+    return () => clearInterval(intervalId);
   }, []);
 
   return (
