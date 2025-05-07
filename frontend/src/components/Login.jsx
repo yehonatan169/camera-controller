@@ -1,13 +1,14 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import '../styles.css';
+import appIcon from './eyson.png';
 
 export default function Login() {
   const [fullName, setFullName] = useState("");
   const [password, setPassword] = useState("");
   const [scanStatus, setScanStatus] = useState("Ready to scan...");
   const [videoStarted, setVideoStarted] = useState(false);
-  const [scanApproved, setScanApproved] = useState(false); // ✅ New state
+  const [scanApproved, setScanApproved] = useState(false);
   const videoRef = useRef(null);
   const navigate = useNavigate();
 
@@ -23,7 +24,6 @@ export default function Login() {
         videoRef.current.play();
       }
 
-      // ✅ Auto-approve after 3 seconds
       setTimeout(() => {
         setScanStatus("✅ Scan Approved");
         setScanApproved(true);
@@ -65,6 +65,15 @@ export default function Login() {
   return (
     <div className="container-center">
       <div className="card">
+        {/* ✅ App Icon */}
+        <div style={{ textAlign: "center", marginBottom: "1rem" }}>
+          <img
+            src={appIcon}
+            alt="App Icon"
+            style={{ width: "80px", height: "80px", borderRadius: "20%" }}
+          />
+        </div>
+
         <h2>Emergency Camera Access</h2>
         <form onSubmit={handleSubmit} className="form-group">
           <input
@@ -75,7 +84,6 @@ export default function Login() {
             className="input"
             required
           />
-
           <input
             type="password"
             placeholder="Password"
