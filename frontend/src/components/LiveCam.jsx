@@ -59,7 +59,7 @@ export default function LiveCam() {
 
       <div style={{
         position: "relative",
-        width: "70%",
+        width: "55%",
         maxWidth: "1400px",
         overflow: "hidden",
         borderRadius: "0.5rem",
@@ -83,7 +83,7 @@ export default function LiveCam() {
         <div style={{
           position: "absolute",
           top: "10px",
-          left: "10px",
+          right: "10px",
           backgroundColor: "rgba(0,0,0,0.7)",
           padding: "6px 12px",
           borderRadius: "8px",
