@@ -7,12 +7,29 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Build directories
 node_modules
 dist
 dist-ssr
 *.local
 
-# Editor directories and files
+# 🔐 Secrets (MUST HAVE)
+.env
+.env.*
+*.env
+*.pem
+*.key
+*.crt
+*.p12
+*.jks
+*.tfstate
+*.tfstate.*
+.npmrc
+.yarnrc
+.pypirc
+!.env.example
+
+# Editor junk
 .vscode/*
 !.vscode/extensions.json
 .idea
