@@ -11,7 +11,7 @@ require("dotenv").config(); // שימוש ב-MONGO_URI
 const app = express();
 expressWs(app); // 🎥 Enable WebSocket support
 
-app.use(cors()); // ✅ Allow requests from frontend (important!)
+app.use(cors()); // ✅ Enable CORS for all routes
 app.use(express.json()); // ✅ Parse JSON request bodies
 
 // 📌 Mount /api routes (including /api/cameras)
