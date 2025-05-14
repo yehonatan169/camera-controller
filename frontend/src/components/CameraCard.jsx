@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 function CameraCard({ camera, onTakeOver }) {
     const getStatusColor = (status) => {
       switch (status) {
@@ -11,6 +12,7 @@ function CameraCard({ camera, onTakeOver }) {
           return "text-gray-500";
       }
     };
+    const navigate = useNavigate();
   
     return (
       <div className="bg-white shadow-md rounded-xl p-5 flex flex-col justify-between">

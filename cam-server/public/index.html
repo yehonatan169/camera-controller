@@ -1,0 +1,26 @@
+<!-- cam-server/public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Webcam</title>
+</head>
+<body>
+  <h1>Live Webcam Feed</h1>
+  <video id="video" controls autoplay muted></video>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script>
+  const video = document.getElementById('video');
+  const url = "https://video.weather2day.co.il:4438/live/hermon/playlist.m3u8"; 
+
+  if (Hls.isSupported()) {
+    const hls = new Hls();
+    hls.loadSource(url);
+    hls.attachMedia(video);
+  } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    video.src = url;
+  }
+</script>
+</body>
+</html>

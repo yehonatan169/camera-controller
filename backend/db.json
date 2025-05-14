@@ -1,0 +1,18 @@
+  {
+      "cameras": [
+        {
+          "id": "cam-1",
+          "name": "מפלס עליון",
+          "status": "active",
+          "url":"https://video.weather2day.co.il:4438/live/hermon/playlist.m3u8"
+        },
+        {
+          "id": "cam-2",
+          "name": "מפלס תחתון",
+          "status": "active"
+        }
+        
+      ]
+    
+    }
+    
